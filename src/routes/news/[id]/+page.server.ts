@@ -45,7 +45,7 @@ export const load: PageServerLoad = async (event) => {
     const [article, voteCount, hasVoted] = await Promise.all([
         getArticle(event.params.id),
         getVoteCount(event.params.id),
-        getHasVoted(event.params.id, session.user?.id),
+        getHasVoted(event.params.id, session?.user.id),
     ]);
 
     return {
