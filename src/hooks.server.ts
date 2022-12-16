@@ -16,6 +16,15 @@ export const handle = SvelteKitAuth({
             return crypto.randomUUID();
         },
     },
+    callbacks: {
+        session: async ({ session, user }: any) => {
+            if (session?.user) {
+                session.user.id = user.id;
+            }
+
+            return session;
+        },
+    },
     providers: [
         GitHub({
             clientId: GITHUB_ID,
