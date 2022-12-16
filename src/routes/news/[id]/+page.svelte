@@ -27,9 +27,11 @@
 <div>
     <div class="flex flex-col mb-2">
         <div class="flex flex-row gap-1 items-center">
-            <button on:click={toggleVote}>
-                <Icon src={Heart} theme={data.hasVoted ? 'solid' : ''} class="w-5 h-5 {data.hasVoted ? 'text-teal-500' : ''}" />
-            </button>
+            {#if data.session?.user}
+                <button on:click={toggleVote}>
+                    <Icon src={Heart} theme={data.hasVoted ? 'solid' : ''} class="w-5 h-5 {data.hasVoted ? 'text-teal-500' : ''}" />
+                </button>
+            {/if}
             <h1 class="text-lg font-medium text-gray-700 -mt-[2px]">{data.article.title}</h1>
         </div>
         <span class="text-xs text-gray-600 leading-[8px]"

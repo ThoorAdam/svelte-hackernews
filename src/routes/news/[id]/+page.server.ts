@@ -28,6 +28,8 @@ async function getVoteCount(id: string) {
 }
 
 async function getHasVoted(id: string, userId: string) {
+    if (!userId) return Promise.resolve(false);
+
     return prisma.vote.findUnique({
         where: {
             articleId_userId: {
@@ -43,7 +45,7 @@ export const load: PageServerLoad = async (event) => {
     const [article, voteCount, hasVoted] = await Promise.all([
         getArticle(event.params.id),
         getVoteCount(event.params.id),
-        getHasVoted(event.params.id, session.user.id),
+        getHasVoted(event.params.id, session.user?.id),
     ]);
 
     return {
