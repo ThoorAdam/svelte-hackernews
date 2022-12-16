@@ -3,18 +3,13 @@
     import { formatDistanceToNowStrict } from 'date-fns';
     import { Icon } from '@steeze-ui/svelte-icon';
     import { Heart } from '@steeze-ui/heroicons';
+    import { post } from '$lib/http/requests';
 
     export let data: PageData;
 
     async function toggleVote() {
-        const response = await fetch(`/api/news/${data.article.id}/toggle-vote`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                hasVoted: !data.hasVoted,
-            }),
+        const response = await post(`/api/news/${data.article.id}/toggle-vote`, {
+            hasVoted: !data.hasVoted,
         });
 
         if (response.ok) {
