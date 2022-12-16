@@ -13,15 +13,10 @@ function getArticle(id: string) {
                     id: true,
                 },
             },
-        },
-    });
-}
-
-function getVoteCount(id: string) {
-    return prisma.vote.count({
-        where: {
-            article: {
-                id,
+            _count: {
+                select: {
+                    votes: true,
+                },
             },
         },
     });
@@ -40,15 +35,10 @@ function getHasVoted(id: string, userId: string) {
 
 export const load: PageServerLoad = async (event) => {
     const session: any = await event.locals.getSession();
-    const [article, voteCount, hasVoted] = await prisma.$transaction([
-        getArticle(event.params.id),
-        getVoteCount(event.params.id),
-        getHasVoted(event.params.id, session?.user.id),
-    ]);
+    const [article, hasVoted] = await prisma.$transaction([getArticle(event.params.id), getHasVoted(event.params.id, session?.user.id)]);
 
     return {
         article,
-        voteCount,
         hasVoted: !!hasVoted,
     };
 };

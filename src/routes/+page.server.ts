@@ -10,7 +10,7 @@ export const load: PageServerLoad = async (event) => {
         throw redirect(301, event.url.pathname + '?s=newest');
     }
 
-    const news: { id: string; title: string }[] = await prisma.article.findMany({
+    const news = await prisma.article.findMany({
         orderBy: {
             createdAt: event.url.searchParams.get('s') === 'newest' ? 'desc' : 'asc',
         },
@@ -18,6 +18,18 @@ export const load: PageServerLoad = async (event) => {
         select: {
             id: true,
             title: true,
+            createdAt: true,
+            author: {
+                select: {
+                    name: true,
+                    id: true,
+                },
+            },
+            _count: {
+                select: {
+                    votes: true,
+                },
+            },
         },
     });
 

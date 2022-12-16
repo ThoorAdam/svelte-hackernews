@@ -7,6 +7,8 @@
 
     export let data: PageData;
 
+    console.log(data.article);
+
     async function toggleVote() {
         const response = await post(`/api/news/${data.article.id}/toggle-vote`, {
             hasVoted: !data.hasVoted,
@@ -14,7 +16,7 @@
 
         if (response.ok) {
             data.hasVoted = !data.hasVoted;
-            data.voteCount = data.hasVoted ? data.voteCount + 1 : data.voteCount - 1;
+            data.article._count.votes = data.hasVoted ? data.article._count.votes + 1 : data.article._count.votes - 1;
         }
     }
 </script>
@@ -30,7 +32,7 @@
             <h1 class="text-lg font-medium text-gray-700 -mt-[2px]">{data.article.title}</h1>
         </div>
         <span class="text-xs text-gray-600 leading-[8px]"
-            >{data.voteCount} votes by
+            >{data.article._count.votes} votes by
             <a href="/user/{data.article.author.name}" class="hover:underline">{data.article.author.name}</a>
             {formatDistanceToNowStrict(new Date(data.article.createdAt))} ago
         </span>
