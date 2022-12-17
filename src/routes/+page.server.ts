@@ -21,7 +21,7 @@ export const load: PageServerLoad = async (event) => {
             id: true,
             title: true,
             createdAt: true,
-            author: {
+            user: {
                 select: {
                     name: true,
                     id: true,

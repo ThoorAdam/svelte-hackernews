@@ -7,3 +7,7 @@
 * {
     @apply font-fredoka;
 }
+
+textarea {
+    @apply resize-none;
+}

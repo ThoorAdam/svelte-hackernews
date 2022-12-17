@@ -11,7 +11,7 @@
             <a class="hover:underline hover:font-medium text-gray-700" href="/news/{item.id}">{item.title}</a>
             <span class="text-xs text-gray-600 leading-[8px]"
                 >{item._count.votes} votes by
-                <a href="/user/{item.author.name}" class="hover:underline">{item.author.name}</a>
+                <a href="/user/{item.user.name}" class="hover:underline">{item.user.name}</a>
                 {formatDistanceToNowStrict(new Date(item.createdAt))} ago
             </span>
         </div>

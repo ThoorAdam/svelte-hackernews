@@ -7,7 +7,7 @@ function getArticle(id: string) {
             id,
         },
         include: {
-            author: {
+            user: {
                 select: {
                     name: true,
                     id: true,

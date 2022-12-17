@@ -31,7 +31,7 @@
         </div>
         <span class="text-xs text-gray-600 leading-[8px]"
             >{data.article._count.votes} votes by
-            <a href="/user/{data.article.author.name}" class="hover:underline">{data.article.author.name}</a>
+            <a href="/user/{data.article.user.name}" class="hover:underline">{data.article.user.name}</a>
             {formatDistanceToNowStrict(new Date(data.article.createdAt))} ago
         </span>
     </div>
