@@ -4,7 +4,7 @@
 </script>
 
 {#if user}
-    <a href="/user/{user.name}">{user.name} ({voteCount})</a>
+    <a href="/user/{user.id}">{user.name} ({voteCount})</a>
 {:else}
     <a href="/signin">Sign In</a>
 {/if}
