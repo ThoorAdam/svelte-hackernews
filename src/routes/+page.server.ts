@@ -12,7 +12,7 @@ export const load: PageServerLoad = async (event) => {
         s = 'newest';
     }
 
-    const news = await prisma.article.findMany({
+    const articles = await prisma.article.findMany({
         orderBy: {
             createdAt: s === 'newest' ? 'desc' : 'asc',
         },
@@ -36,6 +36,6 @@ export const load: PageServerLoad = async (event) => {
     });
 
     return {
-        news,
+        articles,
     };
 };

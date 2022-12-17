@@ -8,7 +8,7 @@
     export let data: PageData;
 
     async function toggleVote() {
-        const response = await post(`/api/news/${data.article.id}/toggle-vote`, {
+        const response = await post(`/api/article/${data.article.id}/toggle-vote`, {
             hasVoted: !data.hasVoted,
         });
 
