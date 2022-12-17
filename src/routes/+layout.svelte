@@ -11,7 +11,7 @@
 </script>
 
 <div class="p-4 mx-auto w-full min-h-full">
-    <div class="bg-teal-500 w-full p-2 text-white text-sm flex flex-row justify-between">
+    <div class="bg-teal-500 w-full p-2 text-white text-sm flex flex-row justify-between rounded-t-md">
         <div class="flex flex-row gap-2">
             <a href="/" class="font-semibold">ThoorNews</a>
             <span>|</span>
