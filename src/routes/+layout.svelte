@@ -2,6 +2,8 @@
     import '../app.css';
     import { page } from '$app/stores';
 
+    import { Toaster } from 'svelte-french-toast';
+
     import SignInOrUsernameLink from '$lib/components/SignInOrUsernameLink.svelte';
 
     $: sortBy = $page.url.searchParams.get('s') ?? 'newest';
@@ -31,3 +33,5 @@
         <slot />
     </div>
 </div>
+
+<Toaster />

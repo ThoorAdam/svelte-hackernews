@@ -3,19 +3,28 @@
     import { formatDistanceToNowStrict } from 'date-fns';
     import { Icon } from '@steeze-ui/svelte-icon';
     import { Heart } from '@steeze-ui/heroicons';
+    import toast from 'svelte-french-toast';
     import { post } from '$lib/http/requests';
 
     export let data: PageData;
 
     async function toggleVote() {
+        toggleHasVoted();
+
         const response = await post(`/api/article/${data.article.id}/toggle-vote`, {
             hasVoted: !data.hasVoted,
         });
 
-        if (response.ok) {
-            data.hasVoted = !data.hasVoted;
-            data.article._count.votes = data.hasVoted ? data.article._count.votes + 1 : data.article._count.votes - 1;
+        if (!response.ok) {
+            toggleHasVoted();
+
+            toast.error('Something went wrong, please try again.')
         }
+    }
+
+    function toggleHasVoted() {
+        data.hasVoted = !data.hasVoted;
+            data.article._count.votes = data.hasVoted ? data.article._count.votes + 1 : data.article._count.votes - 1;
     }
 </script>
 
