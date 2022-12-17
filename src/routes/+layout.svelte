@@ -16,8 +16,10 @@
             <a href="/?s=newest" class={sortBy === 'newest' && url === '/' && 'font-semibold'}>Newest</a>
             <span>|</span>
             <a href="/?s=oldest" class={sortBy === 'oldest' && url === '/' && 'font-semibold'}>Oldest</a>
-            <span>|</span>
-            <a href="/submit" class={url === '/submit' && 'font-semibold'}>Submit</a>
+            {#if $page.data.session?.user}
+                <span>|</span>
+                <a href="/submit" class={url === '/submit' && 'font-semibold'}>Submit</a>
+            {/if}
         </div>
 
         <div>
