@@ -16,7 +16,7 @@
 
     <Label>
         URL
-        <Input options={{ type: 'url', name: 'url', value: 'https://google.se' }} />
+        <Input options={{ type: 'url', name: 'url' }} />
     </Label>
 
     <Label>
