@@ -12,8 +12,6 @@ export const load: PageServerLoad = async (event) => {
         s = 'newest';
     }
 
-    console.log(s === 'newest' ? 'desc' : 'asc');
-
     const news = await prisma.article.findMany({
         orderBy: {
             createdAt: s === 'newest' ? 'desc' : 'asc',
