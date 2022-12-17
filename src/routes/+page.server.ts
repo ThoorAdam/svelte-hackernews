@@ -6,13 +6,17 @@ const possibleSorts = ['newest', 'oldest', 'popular'];
 
 export const load: PageServerLoad = async (event) => {
     // Redirect to ?s=newest if no query string is present
+    let s: string = event.url.searchParams.get('s');
+
     if (!event.url.searchParams.has('s') || !possibleSorts.includes(event.url.searchParams.get('s')!)) {
-        throw redirect(301, event.url.pathname + '?s=newest');
+        s = 'newest';
     }
+
+    console.log(s === 'newest' ? 'desc' : 'asc');
 
     const news = await prisma.article.findMany({
         orderBy: {
-            createdAt: event.url.searchParams.get('s') === 'newest' ? 'desc' : 'asc',
+            createdAt: s === 'newest' ? 'desc' : 'asc',
         },
         take: 25,
         select: {

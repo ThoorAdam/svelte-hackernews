@@ -4,7 +4,7 @@
 
     import SignInOrUsernameLink from '$lib/components/SignInOrUsernameLink.svelte';
 
-    $: sortBy = $page.url.searchParams.get('s');
+    $: sortBy = $page.url.searchParams.get('s') ?? 'newest';
 </script>
 
 <div class="p-4 mx-auto w-full min-h-full">
@@ -12,7 +12,9 @@
         <div class="flex flex-row gap-2">
             <a href="/" class="font-semibold">ThoorNews</a>
             <span>|</span>
-            <a href="/" class={sortBy === 'newest' ? 'font-semibold' : ''}>Newest</a>
+            <a href="/?s=newest" class={sortBy === 'newest' && 'font-semibold'}>Newest</a>
+            <span>|</span>
+            <a href="/?s=oldest" class={sortBy === 'oldest' && 'font-semibold'}>Oldest</a>
         </div>
 
         <div>
