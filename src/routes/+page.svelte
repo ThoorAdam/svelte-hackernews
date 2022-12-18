@@ -12,7 +12,7 @@
             <span class="text-xs text-gray-600 leading-[8px]"
                 >{article._count.votes} votes by
                 <a href="/user/{article.user.id}" class="hover:underline">{article.user.name}</a>
-                {formatDistanceToNowStrict(new Date(article.createdAt))} ago
+                {formatDistanceToNowStrict(new Date(article.createdAt))} ago | <span>{article._count.comments} comments</span>
             </span>
         </div>
     {/each}

@@ -19,6 +19,11 @@
         <dd>{data.user._count.articles}</dd>
     </div>
 
+    <div class="flex flex-row gap-1" class:mb-4={data.user.id === data.session?.user.id}>
+        <dt>Comments:</dt>
+        <dd>{data.user._count.comments}</dd>
+    </div>
+
     {#if data.user.id === data.session?.user.id}
         <Button on:click={() => signOut({ callbackUrl: '/' })}>Sign out</Button>
     {/if}

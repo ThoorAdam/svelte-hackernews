@@ -14,6 +14,7 @@ export const load: PageServerLoad = async ({ params }) => {
                 select: {
                     articles: true,
                     votes: true,
+                    comments: true,
                 },
             },
         },
