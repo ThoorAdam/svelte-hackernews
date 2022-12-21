@@ -5,7 +5,6 @@ import type { PageServerLoad } from './$types';
 const possibleSorts = ['newest', 'oldest', 'popular'];
 
 export const load: PageServerLoad = async (event) => {
-    // Redirect to ?s=newest if no query string is present
     let s: string = event.url.searchParams.get('s');
 
     if (!event.url.searchParams.has('s') || !possibleSorts.includes(event.url.searchParams.get('s')!)) {
